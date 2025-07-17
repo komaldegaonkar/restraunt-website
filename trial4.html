@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Simmer and Stew - Vegetarian Restaurant</title>
+<style>
+  /* Base styles */
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&family=Roboto&display=swap');
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background: #f2f6f5;
+    color: #3a3a3a;
+    scroll-behavior: smooth;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  strong {
+    font-weight: 700;
+  }
+
+  /* Header & navigation */
+  header {
+    background: #558b2f;
+    color: #fff;
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 8px rgb(0 0 0 / 0.1);
+    font-family: 'Playfair Display', serif;
+  }
+
+  header .logo {
+    font-size: 1.8rem;
+    user-select: none;
+    font-weight: 700;
+    letter-spacing: 1.1px;
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 32px;
+    margin: 0;
+    align-items: center;
+  }
+
+  nav li {
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    position: relative;
+    padding: 4px 0;
+  }
+
+  nav li:hover,
+  nav li:focus {
+    color: #aed581;
+  }
+
+  nav li:focus-visible {
+    outline: 2px solid #aed581;
+    outline-offset: 2px;
+  }
+
+  /* ======= Main banner ======= */
+
+  main {
+    max-width: 1280px;
+    margin: 0 auto 72px auto;
+    padding: 0 24px;
+  }
+
+  .banner {
+    margin-top: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+
+  .banner .image-container {
+    flex: 1 1 280px;
+    max-width: 280px;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 7px solid #8bc34a;
+    box-shadow: 0 8px 18px rgb(0 0 0 / 0.15);
+    animation: rotation 60s linear infinite;
+    cursor: default;
+    background: white;
+  }
+
+  /* Pause rotation on tab exit */
+  html:not(:focus-within) .banner .image-container {
+    animation-play-state: paused;
+  }
+
+  .banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  @keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .banner-text-wrapper {
+    flex: 1 1 280px;
+    max-width: 520px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    user-select: none;
+  }
+
+  .banner-text-wrapper h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0;
+    color: #33691e;
+  }
+
+  .banner-text-wrapper p.small-desc {
+    font-size: 1rem;
+    color: #6d6d6d;
+    margin-top: -4px;
+  }
+
+  .btn-book {
+    margin-top: 16px;
+    align-self: flex-start;
+    padding: 12px 28px;
+    border: none;
+    background-color: #9ccc65;
+    color: #1b5e20;
+    font-weight: 700;
+    border-radius: 32px;
+    cursor: pointer;
+    font-size: 1rem;
+    box-shadow: 0 3px 6px rgba(155, 205, 85, 0.65);
+    transition: background-color 0.3s ease, box-shadow 0.25s ease;
+    user-select: none;
+  }
+
+  .btn-book:hover,
+  .btn-book:focus-visible {
+    background-color: #7cb342;
+    box-shadow: 0 6px 14px rgba(124, 179, 66, 0.8);
+    outline: none;
+  }
+
+  /* ===== Four info sections ===== */
+
+  .info-section {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 28px 28px;
+  }
+
+  .info-box {
+    background: #dcedc8;
+    padding: 24px 20px 28px 20px;
+    border-radius: 16px;
+    box-shadow: 0 6px 14px rgb(148 177 68 / 0.2);
+    user-select: none;
+    cursor: default;
+    transition: box-shadow 0.3s ease, background-color 0.3s ease;
+    font-family: 'Roboto', sans-serif;
+    color: #33691e;
+  }
+
+  .info-box:hover,
+  .info-box:focus-within {
+    background: #c5e1a5;
+    box-shadow: 0 12px 28px rgb(120 160 21 / 0.35);
+  }
+
+  .info-box h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    margin: 0 0 14px 0;
+    font-weight: 700;
+  }
+
+  .info-box p {
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+
+  /* ===== Menu Button ===== */
+
+  .btn-menu {
+    display: block;
+    max-width: 180px;
+    margin: 40px auto 28px auto;
+    padding: 14px 28px;
+    background-color: #689f38;
+    color: #f1f8e9;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border-radius: 40px;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    user-select: none;
+    box-shadow: 0 5px 12px rgb(92 142 20 / 0.55);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .btn-menu:hover,
+  .btn-menu:focus-visible {
+    background-color: #558b2f;
+    box-shadow: 0 8px 22px rgb(58 107 5 / 0.75);
+    outline: none;
+  }
+
+  /* ===== Contact form (Reservation form) ===== */
+
+  .reservation-section {
+    background: #f9fff5;
+    max-width: 420px;
+    margin: 0 auto 72px auto;
+    border-radius: 16px;
+    box-shadow: 0 6px 12px rgb(111 168 38 / 0.25);
+    padding: 28px 32px;
+    user-select: none;
+  }
+
+  .reservation-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1.75rem;
+    margin-top: 0;
+    margin-bottom: 4px;
+    text-align: center;
+    color: #558b2f;
+  }
+
+  .reservation-section p.desc {
+    font-size: 1rem;
+    color: #5a6e2a;
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="date"],
+  input[type="time"],
+  select,
+  textarea {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 2px solid #a5d6a7;
+    background-color: #f0f6e8;
+    color: #33691e;
+    resize: vertical;
+    box-shadow: inset 1px 1px 6px #c7daba;
+    transition: border-color 0.3s ease;
+  }
+
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  input[type="date"]:focus,
+  input[type="time"]:focus,
+  select:focus,
+  textarea:focus {
+    border-color: #7cb342;
+    outline: none;
+  }
+
+  textarea {
+    min-height: 60px;
+  }
+
+  .booking-btn {
+    margin-top: 12px;
+    padding: 12px 0;
+    background-color: #7cb342;
+    color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 28px;
+    cursor: pointer;
+    box-shadow: 0 5px 14px rgb(102 153 18 / 0.65);
+    user-select: none;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .booking-btn:hover,
+  .booking-btn:focus-visible {
+    background-color: #558b2f;
+    box-shadow: 0 8px 24px rgb(58 82 5 / 0.8);
+    outline: none;
+  }
+
+  /* ===== About Us Section ===== */
+
+  .about-us {
+    max-width: 1024px;
+    margin: 48px auto 72px auto;
+    padding: 0 24px;
+    text-align: center;
+    background-color: #e6f0d4;
+    border-radius: 20px;
+    box-shadow: 0 7px 16px rgb(107 152 23 / 0.25);
+  }
+
+  .about-us h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin-bottom: 12px;
+    color: #4a7842;
+    font-weight: 700;
+  }
+
+  .about-us p.lead-text {
+    font-size: 1.2rem;
+    margin-top: 0;
+    color: #5c8549;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.5;
+  }
+
+  .about-experience {
+    margin-top: 32px;
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    font-family: 'Playfair Display', serif;
+    color: #557f28;
+    font-size: 1.15rem;
+    font-weight: 600;
+    user-select: none;
+  }
+
+  .about-experience > div {
+    background: #d0e5b7;
+    border-radius: 24px;
+    padding: 20px 32px;
+    box-shadow: 0 5px 12px rgb(152 191 77 / 0.3);
+    transition: background-color 0.4s ease;
+  }
+
+  .about-experience > div:hover,
+  .about-experience > div:focus-within {
+    background-color: #c4dd9a;
+  }
+
+  /* ===== Menu Page ===== */
+
+  #menu-page {
+    max-width: 900px;
+    margin: 0 auto 72px auto;
+    padding: 0 24px 36px 24px;
+    display: none;
+    font-family: 'Roboto', sans-serif;
+    color: #3a3a3a;
+  }
+
+  #menu-page.active {
+    display: block;
+  }
+
+  #menu-page h2.section-title {
+    font-family: 'Playfair Display', serif;
+    color: #558b2f;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    border-bottom: 3px solid #8bc34a;
+    padding-bottom: 4px;
+    user-select: none;
+  }
+
+  .menu-category {
+    margin-bottom: 44px;
+  }
+
+  .menu-item {
+    margin-bottom: 20px;
+  }
+
+  .menu-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: #33691e;
+  }
+
+  .menu-item-desc {
+    font-size: 0.87rem;
+    color: #5a5a5a;
+    margin-top: 6px;
+    border-top: 1px solid #a5d6a7;
+    padding-top: 6px;
+    user-select: text;
+  }
+
+  #back-home {
+    background-color: #7cb342;
+    color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 12px 28px;
+    border-radius: 36px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgb(102 153 18 / 0.6);
+    display: block;
+    margin: 0 auto;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    user-select: none;
+  }
+  #back-home:hover,
+  #back-home:focus-visible {
+    background-color: #558b2f;
+    box-shadow: 0 8px 24px rgb(58 82 5 / 0.75);
+    outline: none;
+  }
+
+  /* ===== Footer ===== */
+
+  footer {
+    background-color: #33691e;
+    color: #dcedc8;
+    padding: 28px 24px 42px 24px;
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .footer-container {
+    max-width: 1040px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 18px;
+  }
+
+  .footer-section {
+    flex: 1 1 240px;
+    min-width: 220px;
+  }
+
+  .footer-section h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    margin-bottom: 14px;
+    font-weight: 700;
+  }
+
+  .footer-section ul {
+    padding-left: 20px;
+    margin-top: 0;
+    list-style-type: disc;
+  }
+
+  .footer-section ul li {
+    margin-bottom: 8px;
+    cursor: default;
+    user-select: none;
+  }
+
+  .footer-section p, 
+  .footer-section address, 
+  .footer-section span {
+    margin: 6px 0;
+    font-style: normal;
+    user-select: none;
+  }
+
+  .footer-bottom {
+    text-align: center;
+    margin-top: 32px;
+    font-family: 'Playfair Display', serif;
+    color: #ccdbb1;
+  }
+
+  .footer-bottom p {
+    margin: 4px 0;
+  }
+
+  /* Accessibility */
+  button, input, select, textarea {
+    font-family: inherit;
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo" aria-label="Restaurant name">Simmer and Stew</div>
+  <nav aria-label="Primary Navigation">
+    <ul>
+      <li tabindex="0" id="nav-home">Home</li>
+      <li tabindex="0" id="nav-about">About Us</li>
+      <li tabindex="0" id="nav-service">Service</li>
+      <li tabindex="0" id="nav-menu">Menu</li>
+      <li tabindex="0" id="nav-contact">Contact</li>
+      <li tabindex="0" id="nav-book">Book a Table</li>
+    </ul>
+  </nav>
+</header>
+
+<!-- MAIN CONTENT -->
+<main id="homepage">
+
+  <!-- Banner with image and text -->
+  <section class="banner" aria-label="Welcome banner">
+    <div class="image-container" aria-hidden="true">
+      <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Barbecue griller" />
+    </div>
+    <div class="banner-text-wrapper">
+      <h1><strong>Enjoy your delicious meal</strong></h1>
+      <p class="small-desc">Savor the flavour, share the joy.</p>
+      <button class="btn-book" id="btn-bookTable" aria-label="Book a table">Book a Table</button>
+    </div>
+  </section>
+
+  <!-- Four info boxes -->
+  <section class="info-section" aria-label="Restaurant Features">
+    <article tabindex="0" class="info-box" aria-labelledby="master-chef-title" role="region" aria-describedby="master-chef-desc">
+      <h3 id="master-chef-title">Master Chefs</h3>
+      <p id="master-chef-desc">Experience the culinary mastery of MasterChef, where creativity meets flavor. Savor every bite of our expertly crafted dishes, inspired by the world's top chefs.</p>
+    </article>
+    <article tabindex="0" class="info-box" aria-labelledby="quality-food-title" role="region" aria-describedby="quality-food-desc">
+      <h3 id="quality-food-title">Quality Food</h3>
+      <p id="quality-food-desc">Our dishes are crafted with love and care, using only the finest ingredients.</p>
+    </article>
+    <article tabindex="0" class="info-box" aria-labelledby="online-order-title" role="region" aria-describedby="online-order-desc">
+      <h3 id="online-order-title">Online Order</h3>
+      <p id="online-order-desc">Conveniently browse our menu and place your order from the comfort of your home.</p>
+    </article>
+    <article tabindex="0" class="info-box" aria-labelledby="service-title" role="region" aria-describedby="service-desc">
+      <h3 id="service-title">24/7 Service</h3>
+      <p id="service-desc">Enjoy 24/7 online ordering and delivery, whenever you want, wherever you are.</p>
+    </article>
+  </section>
+
+  <!-- Menu button -->
+  <button class="btn-menu" id="show-menu" aria-label="Show menu">Menu</button>
+
+  <!-- Reservation form below menu button -->
+  <section class="reservation-section" aria-labelledby="reservation-header">
+    <h2 id="reservation-header">Reservation</h2>
+    <p class="desc">Book a table online</p>
+    <form aria-label="Reservation booking form" onsubmit="return false;">
+      <input type="text" name="name" aria-label="Name" placeholder="Name" tabindex="0" />
+      <input type="email" name="email" aria-label="Email" placeholder="Email" tabindex="0" />
+      <input type="date" name="date" aria-label="Reservation date" tabindex="0" />
+      <input type="time" name="time" aria-label="Reservation time" tabindex="0" />
+      <select name="people" aria-label="Number of people" tabindex="0">
+        <option value="" disabled selected>Number of people</option>
+        <option value="1">1 person</option>
+        <option value="2">2 people</option>
+        <option value="3">3 people</option>
+        <option value="4">4 people</option>
+        <option value="5">5 people</option>
+        <option value="6">6 people</option>
+        <option value="7+">7 or more people</option>
+      </select>
+      <textarea name="special" aria-label="Special request" placeholder="Special request" tabindex="0"></textarea>
+      <button type="submit" class="booking-btn">Book now</button>
+    </form>
+  </section>
+
+  <!-- About Us section -->
+  <section class="about-us" id="about-us" tabindex="0" aria-label="About Us Section">
+    <h2>Welcome to Simmer and Stew.</h2>
+    <p class="lead-text">
+      Welcome to Simmer and Stew, where flavors come alive! We're passionate about serving delicious, authentic Indian cuisine in a warm and inviting atmosphere. Our chefs use only the freshest ingredients to craft dishes that will transport your taste buds. Come taste the difference!
+    </p>
+    <div class="about-experience" aria-label="Experience and Chef information">
+      <div tabindex="0">15 years of experience</div>
+      <div tabindex="0">10 popular master chefs</div>
+    </div>
+  </section>
+</main>
+
+<!-- MENU PAGE -->
+<main id="menu-page" aria-label="Menu section">
+
+  <!-- Appetizers -->
+  <section class="menu-category" aria-labelledby="menu-appetizers">
+    <h2 class="section-title" id="menu-appetizers">Appetizers</h2>
+    <article class="menu-item">
+      <div class="menu-item-header">
+        <span>Paneer Tikka</span>
+        <span><strong>₹250</strong></span>
+      </div>
+      <p class="menu-item-desc">marinated paneer grilled to perfection</p>
+    </article>
+    <article class="menu-item">
+      <div class="menu-item-header">
+        <span>Veg Samosa</span>
+        <span><strong>₹120</strong></span>
+      </div>
+      <p class="menu-item-desc">crunchy fried pastries filled with spiced potatoes and peas</p>
+    </article>
+    <article class="menu-item">
+      <div class="menu-item-header">
+        <span>Papdi Chaat</span>
+        <span><strong>₹150</strong></span>
+      </div>
+      <p class="menu-item-desc">crunchy flour bread topped with yoghurt, chickpeas and chutneys</p>
+    </article>
+  </section>
+
+  <!-- Street Food -->
+  <section class="menu-category" aria-labelledby="menu-street-food">
+    <h2 class="section-title" id="menu-street-food">Street Food</h2>
+    <article class="menu-item">
+      <div class="menu-item-header">
+        <span>Pani Puri</span>
+        <span><strong>₹100</strong></span>
+      </div>
+      <p class="menu-item-desc">crunchy puris filled with flavored water, tamarind chutney, and spices</p>
+    </article>
+    <article class="menu-item">
+      <div class="menu-item-header">
+        <span>Aloo Chaat</span>
+        <span><strong>₹120</strong></span>
+      </div>
+      <p class="menu-item-desc">spicy potato snack topped with yogurt, chutneys, and sev</p>
+    </article>
+    <article class="menu-item">
+      <div class="menu-item-header">
+        <span>Bhel Puri</span>
+        <span><strong>₹100</strong></span>
+      </div>
+      <p class="menu-item-desc">puffed rice mixed with chutneys, onions, and potatoes</p>
+    </article>
+  </section>
+
+  <!-- Main Course -->
+  <section class="menu-category" aria-labelledby="menu-main-course">
+    <h2 class="section-title" id="menu-main-course">Main Course</h2>
+    <article class="menu-item">
+      <div class="menu-item-header">
+        <span>Palak Paneer</span>
+        <span><strong>₹220</strong></span>
+      </div>
+      <p class="menu-item-desc">creamy spinach curry with paneer</p>
+    </article>
+    <article class="menu-item">
+      <div class="menu-item-header">
+        <span>Chana Masala</span>
+        <span><strong>₹180</strong></span>
+      </div>
+      <p class="menu-item-desc">spicy chickpea curry in a rich tomato-based sauce</p>
+    </article>
+    <article class="menu-item">
+      <div class="menu-item-header">
+        <span>Vegetable Biryani</span>
+        <span><strong>₹200</strong></span>
+      </div>
+      <p class="menu-item-desc">mixed vegetable rice dish flavored with saffron and spices</p>
+    </article>
+    <article class="menu-item">
+      <div class="menu-item-header">
+        <span>Dal Makhani</span>
+        <span><strong>₹180</strong></span>
+      </div>
+      <p class="menu-item-desc">creamy black lentil curry</p>
+    </article>
+    <article class="menu-item">
+      <div class="menu-item-header">
+        <span>Baingan Bharta</span>
+        <span><strong>₹150</strong></span>
+      </div>
+      <p class="menu-item-desc">roasted eggplant mash with onions, garlic, and spices</p>
+    </article>
+  </section>
+
+  <!-- Deserts -->
+  <section class="menu-category" aria-labelledby="menu-desserts">
+    <h2 class="section-title" id="menu-desserts">Deserts</h2>
+    <article class="menu-item">
+      <div class="menu-item-header">
+        <span>Gulab Jamun</span>
+        <span><strong>₹80</strong></span>
+      </div>
+      <p class="menu-item-desc">deep-fried dumplings soaked in rose syrup</p>
+    </article>
+    <article class="menu-item">
+      <div class="menu-item-header">
+        <span>Ras Malai</span>
+        <span><strong>₹150</strong></span>
+      </div>
+      <p class="menu-item-desc">cream-soaked paneer dessert</p>
+    </article>
+  </section>
+
+  <!-- Beverages -->
+  <section class="menu-category" aria-labelledby="menu-beverages">
+    <h2 class="section-title" id="menu-beverages">Beverages</h2>
+    <article class="menu-item">
+      <div class="menu-item-header">
+        <span>Mango Lassi</span>
+        <span><strong>₹80</strong></span>
+      </div>
+      <p class="menu-item-desc">yogurt-based drink with mango puree</p>
+    </article>
+    <article class="menu-item">
+      <div class="menu-item-header">
+        <span>Masala Chai</span>
+        <span><strong>₹20</strong></span>
+      </div>
+      <p class="menu-item-desc">spiced tea with black tea leaves and spices</p>
+    </article>
+  </section>
+
+  <!-- Back to home button -->
+  <button id="back-home" aria-label="Back to home page">Back</button>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-container">
+    <section class="footer-section" aria-labelledby="footer-company">
+      <h3 id="footer-company">Company</h3>
+      <ul>
+        <li>About us</li>
+        <li>Contact us</li>
+        <li>Reservation</li>
+        <li>Privacy Policy</li>
+        <li>Terms and Conditions</li>
+      </ul>
+    </section>
+    <section class="footer-section" aria-labelledby="footer-contact">
+      <h3 id="footer-contact">Contact Info</h3>
+      <address>123 street, Solapur, Maharashtra</address>
+      <p>Phone: 9876543210</p>
+      <p>Email: <a href="mailto:ss@gmail.com" style="color:#dcedc8;">ss@gmail.com</a></p>
+    </section>
+    <section class="footer-section" aria-labelledby="footer-opening">
+      <h3 id="footer-opening">Opening</h3>
+      <p>Monday-Saturday</p>
+      <p>9:00 a.m. to 10:00 p.m</p>
+      <br />
+      <p>Sunday</p>
+      <p>7:00 a.m. to 12:00 p.m.</p>
+    </section>
+  </div>
+
+  <div class="footer-bottom" aria-label="Footer copyright">
+    <p>Thanks for visiting</p>
+    <p>#Where every bite tells a story.</p>
+    <p style="font-size:0.85rem;margin-top:12px;">&copy; 2024 Komal Degaonkar</p>
+  </div>
+</footer>
+
+<script>
+  // Elements references
+  const homepage = document.getElementById('homepage');
+  const menuPage = document.getElementById('menu-page');
+  const btnShowMenu = document.getElementById('show-menu');
+  const btnBackHome = document.getElementById('back-home');
+  const btnBookTable = document.getElementById('btn-bookTable');
+
+  // Navigation tab items
+  const navHome = document.getElementById('nav-home');
+  const navAbout = document.getElementById('nav-about');
+  const navService = document.getElementById('nav-service');
+  const navMenu = document.getElementById('nav-menu');
+  const navContact = document.getElementById('nav-contact');
+  const navBook = document.getElementById('nav-book');
+
+  // Show menu page, hide home page
+  function showMenu() {
+    homepage.style.display = 'none';
+    menuPage.classList.add('active');
+    menuPage.focus();
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+
+  // Show home page, hide menu page
+  function showHome() {
+    menuPage.classList.remove('active');
+    homepage.style.display = 'block';
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+
+  // Scroll to about us section
+  function scrollToAbout() {
+    const aboutUs = document.getElementById('about-us');
+    aboutUs.scrollIntoView({behavior: 'smooth'});
+  }
+
+  // Scroll to "Service" - the 4 section info boxes (info-section)
+  function scrollToService() {
+    const infoSection = document.querySelector('.info-section');
+    infoSection.scrollIntoView({behavior: 'smooth'});
+  }
+
+  // Scroll to Contact / Reservation form
+  function scrollToContact() {
+    const reservation = document.querySelector('.reservation-section');
+    reservation.scrollIntoView({behavior: 'smooth'});
+  }
+
+  // Book table scrolls to reservation form as well
+  function scrollToBook() {
+    scrollToContact();
+  }
+
+  // Enable button/tab interaction for inputs in the form for show focus but no action taken.
+  const reservationFormElements = document.querySelectorAll('.reservation-section input, .reservation-section select, .reservation-section textarea, .reservation-section button');
+  reservationFormElements.forEach(el => {
+    el.addEventListener('click', e => {
+      e.preventDefault();
+      el.focus();
+    });
+  });
+
+  // Event listeners
+  btnShowMenu.addEventListener('click', showMenu);
+  btnBackHome.addEventListener('click', showHome);
+  btnBookTable.addEventListener('click', scrollToBook);
+
+  navHome.addEventListener('click', showHome);
+  navAbout.addEventListener('click', scrollToAbout);
+  navService.addEventListener('click', scrollToService);
+  navMenu.addEventListener('click', showMenu);
+  navContact.addEventListener('click', scrollToContact);
+  navBook.addEventListener('click', scrollToBook);
+
+  // Keyboard accessibility for nav items (Enter or Space triggers click)
+  const navItems = [navHome, navAbout, navService, navMenu, navContact, navBook];
+  navItems.forEach(item => {
+    item.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ' || event.key === 'Spacebar') {
+        event.preventDefault();
+        item.click();
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
